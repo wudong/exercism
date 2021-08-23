@@ -24,6 +24,6 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    let cc: Vec<String> = (end..start + 1).rev().map(|n| verse(n)).collect();
+    let cc: Vec<String> = (end..=start).rev().map(verse).collect();
     return cc.join("\n");
 }
