@@ -7,8 +7,7 @@ pub fn nth(n: u32) -> u32 {
     }
 
     for i in primes.len()..=n as usize {
-        let vv = next_prime(&primes);
-        println!("{}th prime: {}", i, vv);
+        let vv = next_prime(&primes);        
         primes.push(vv);
     }
 
@@ -16,28 +15,24 @@ pub fn nth(n: u32) -> u32 {
 }
 
 pub fn next_prime(primes: &Vec<u32>)-> u32 { 
-    let mut next = *primes.last().unwrap() + 1;
-    loop {
+    let next = *primes.last().unwrap() + 1;
+    (next..).skip_while(|&x|!is_prime(primes, x))
+            .next().unwrap()
+
+    /* loop {
         // checking from the last_prime.
         if is_prime(primes, next) {            
             return next;
         }
         next +=1;
-    }
+    } */
 }
 
 pub fn is_prime(primes: &Vec<u32>, v: u32) -> bool {     
-    for i in primes {        
-        if v % i ==0  {
-            return false;
-        }
-
-        if *i > (v as f32).sqrt().round() as u32 {
-            break;
-        }
-    }
-
-    return true;
+    let limit = (v as f32).sqrt().round() as u32;
+    primes.iter()
+         .take_while(|&&prime|prime <= limit)
+         .all(|prime|v % prime !=0)
 }
 
 
