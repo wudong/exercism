@@ -1,8 +1,7 @@
 use std::{collections::HashSet};
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
-    let crs: Vec<char> = word.chars().flat_map(|x|x.to_lowercase()).collect();
-    let mut sorted_crs = crs.clone();
+    let mut sorted_crs: Vec<char> = word.chars().flat_map(|x|x.to_lowercase()).collect();    
     sorted_crs.sort();
     let result = possible_anagrams.iter()
         .map(|&str| (str, str.chars().flat_map(|x|x.to_lowercase()).collect::<Vec<char>>()))
