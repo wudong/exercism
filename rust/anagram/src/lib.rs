@@ -2,7 +2,7 @@ use std::{collections::HashSet};
 
 pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
     let mut sorted_crs: Vec<char> = word.chars().flat_map(|x|x.to_lowercase()).collect();    
-    sorted_crs.sort();
+    sorted_crs.sort_unstable();
     let result = possible_anagrams.iter()
         .map(|&str| (str, str.chars().flat_map(|x|x.to_lowercase()).collect::<Vec<char>>()))
         .filter_map(|(ss, chars)| 
@@ -19,7 +19,7 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'
 
 pub fn match_chars(v1: Vec<char>, v2: &Vec<char>)-> bool {
     let mut v3 = v1; // make a move // Can it be done without this?
-    v3.sort();
+    v3.sort_unstable();
     v3.len()==v2.len() && v3.eq(v2)
 }
 
