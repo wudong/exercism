@@ -17,10 +17,10 @@ impl Duration {
 }
 
 pub trait Planet {
-    fn year_in_earth_year ()-> f64;
+    const YEAR_IN_EARTH_YEAR: f64;
 
     fn years_during(d: &Duration) -> f64 {
-        d.in_earth_year() / Self::year_in_earth_year()
+        d.in_earth_year() / Self::YEAR_IN_EARTH_YEAR
     }
 }
 
@@ -33,43 +33,19 @@ pub struct Saturn;
 pub struct Uranus;
 pub struct Neptune;
 
-impl Planet for Mercury {
-    fn year_in_earth_year() -> f64 {
-        0.2408467
+macro_rules! impl_planet {
+   ($t:ident, $e:expr) => {
+    impl Planet for $t {
+        const YEAR_IN_EARTH_YEAR:f64 = $e;
     }
+   }
 }
-impl Planet for Venus {
-    fn year_in_earth_year() -> f64 {
-        0.61519726
-    }
-}
-impl Planet for Earth {
-    fn year_in_earth_year() -> f64 {
-        1_f64
-    }
-}
-impl Planet for Mars {
-    fn year_in_earth_year() -> f64 {
-        1.8808158_f64
-    }
-}
-impl Planet for Jupiter {
-    fn year_in_earth_year() -> f64 {
-        11.862615_f64
-    }
-}
-impl Planet for Saturn {
-    fn year_in_earth_year() -> f64 {
-        29.447498_f64
-    }
-}
-impl Planet for Uranus {
-    fn year_in_earth_year() -> f64 {
-        84.016846_f64
-    }
-}
-impl Planet for Neptune {
-    fn year_in_earth_year() -> f64 {
-        164.79132_f64
-    }
-}
+
+impl_planet!(Mercury, 0.2408467);
+impl_planet!(Venus, 0.61519726);
+impl_planet!(Earth, 1_f64);
+impl_planet!(Mars, 1.8808158_f64);
+impl_planet!(Jupiter, 11.862615_f64);
+impl_planet!(Saturn, 29.447498_f64);
+impl_planet!(Uranus, 84.016846_f64);
+impl_planet!(Neptune, 164.79132_f64);
