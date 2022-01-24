@@ -1,13 +1,12 @@
 
 pub fn abbreviate(phrase: &str) -> String {
-    let cs = phrase.split(&[' ','-']).into_iter()    
+    phrase.split(&[' ','-']).into_iter()    
     .map(|x| de_all_cap(x))    
     .flat_map(|s|
             s.chars().enumerate()
                  .filter(|(idx, c)| c.is_ascii_uppercase() || (*idx==0 && *c!='_') )
-        ).map(|s|s.1.to_ascii_uppercase());
-        
-    String::from_iter(cs)
+        ).map(|s|s.1.to_ascii_uppercase())
+        .collect::<String>()       
 }
 
 
