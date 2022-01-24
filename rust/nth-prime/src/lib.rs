@@ -1,4 +1,3 @@
-
 pub fn nth(n: u32) -> u32 {
     // how to calc a prime number properly?
     let mut primes: Vec<u32> = vec![2,3,5,7,11,13];
@@ -6,7 +5,7 @@ pub fn nth(n: u32) -> u32 {
         return primes[n as usize];
     }
 
-    for i in primes.len()..=n as usize {
+    for _ in primes.len()..=n as usize {
         let vv = next_prime(&primes);        
         primes.push(vv);
     }

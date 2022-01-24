@@ -1,6 +1,3 @@
-use core::num;
-
-
 #[derive(Debug, PartialEq)]
 pub enum Error {
     InvalidInputBase,
