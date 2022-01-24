@@ -59,8 +59,7 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
     match vv {
         Some(vvv) =>  Result::Ok(vvv),
         None=> Result::Err(Error::InvalidDigit(to_base))
-    }
-    
+    }    
 }
 
 fn convert_from_10_base(number: u64, to_base: u32) -> Vec<u32> {
