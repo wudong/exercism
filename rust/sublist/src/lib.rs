@@ -39,7 +39,7 @@ pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Compariso
 }
 
 pub fn check_contain<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> bool {
-    if _second_list.len() == 0 && _first_list.len() >= 0 {
+    if _second_list.len() == 0{
         return true;
     }
 

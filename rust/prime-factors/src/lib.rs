@@ -43,7 +43,7 @@ pub fn nth(n: u64) -> Vec<u64> {
         return primes;
     }
 
-    for i in primes.len()..=n as usize {
+    for _ in primes.len()..=n as usize {
         let vv = next_prime(&primes);        
         primes.push(vv);
     }
